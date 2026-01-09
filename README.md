@@ -23,7 +23,7 @@ if([XMLObjectRetriever checkForAuth] == YES) {
         NSLog(@"Auth Check Success");
 ```
 
-Do keep in mind however for this keychain access library to work, you need to add a few things into your application delegate file.
+Do keep in mind however for this keychain access library to work, you may need to add a few things into your application delegate file.
 
 import
 ```
@@ -31,12 +31,8 @@ import
 #import <Security/Security.h>
 #import <CoreData/CoreData.h>
 ```
+im not 100% sure if you need this, last time i touched this was in june, keychain works fine for me in ios simulator, data PERSISTS even after the app is being deleted and re-installed, which makes it easy to make the app itself trackable.
 
-also assign these properties into the interface of the header
-```
-@property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-@property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
-@property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
-```
-
+# Why use this?
+Originally I opted to use my own library, and Keychain in general due to me being able to assign unique app ID's to apps installed on any device by giving the app a device unique UUID and app ID which would not change even if you re install the app, saving them in a database and thus making API access limited to only apps within that app uuid register. Applications with invalid app ID's can not access the API and are thus locked out.
 
