@@ -19,8 +19,7 @@ for example:
 ```
 or
 ```
-if([XMLObjectRetriever checkForAuth] == YES) {
-        NSLog(@"Auth Check Success");
+if ([XMLKeychainUtility checkStringForKey:@"uniqueAppID"] == nil) {
 ```
 
 Do keep in mind however for this keychain access library to work, you may need to add a few things into your application delegate file.
